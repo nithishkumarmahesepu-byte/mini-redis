@@ -2,12 +2,9 @@
 #include <iostream>
 #include <sstream>
 
-// ─────────────────────────────────────────────────────────
-// PRIVATE: Append a command string to the log file
-// This is how persistence works — every change is recorded
-// ─────────────────────────────────────────────────────────
+
 void Store::appendToLog(string command) {
-    ofstream file(log_file, ios::app);  // open in append mode
+    ofstream file(log_file, ios::app);  
     if (file.is_open()) {
         file << command << "\n";
         file.close();
@@ -20,7 +17,7 @@ void Store::appendToLog(string command) {
 // ─────────────────────────────────────────────────────────
 void Store::set(string key, string value) {
     data[key] = value;
-    expiry.removeExpiry(key);           // reset any existing TTL
+    expiry.removeExpiry(key);           
     appendToLog("SET " + key + " " + value);
 }
 
@@ -32,7 +29,6 @@ optional<string> Store::get(string key) {
     if (data.find(key) == data.end())
         return nullopt;
 
-    // Lazy expiry check — delete when accessed
     if (expiry.isExpired(key)) {
         data.erase(key);
         expiry.removeExpiry(key);
@@ -117,8 +113,7 @@ void Store::setex(string key, int seconds, string value) {
     data[key] = value;
     expiry.setExpiry(key, seconds);
     appendToLog("SET " + key + " " + value);
-    // Note: we log as SET — on reload, key reloads without TTL
-    // This is acceptable for a student project
+    
 }
 
 // ─────────────────────────────────────────────────────────
@@ -189,7 +184,7 @@ void Store::loadFromDisk() {
         if (cmd == "SET") {
             string key, value;
             ss >> key >> value;
-            data[key] = value;          // directly insert, don't log again
+            data[key] = value;         
         }
         else if (cmd == "DEL") {
             string key;
