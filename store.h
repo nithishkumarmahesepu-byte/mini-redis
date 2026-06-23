@@ -14,8 +14,7 @@ private:
     ExpiryManager expiry;
     string log_file = "appendonly.log";
 
-    void appendToLog(string command);   // write command to file
-
+    void appendToLog(string command);   
 public:
     void set(string key, string value);
     optional<string> get(string key);
@@ -27,6 +26,6 @@ public:
     string incr(string key);
     string decr(string key);
 
-    void loadFromDisk();   // call once on server start
+    void loadFromDisk();  
     int size();
 };
