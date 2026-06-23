@@ -10,11 +10,6 @@ using namespace std;
 
 Server::Server(int port) : port(port) {}
 
-// ─────────────────────────────────────────────────────────
-// handleCommand
-// Takes a raw string like "SET name Rahul"
-// Returns a response string like "OK\n"
-// ─────────────────────────────────────────────────────────
 string Server::handleCommand(string input) {
     Command cmd = parser.parse(input);
 
@@ -136,10 +131,7 @@ string Server::handleCommand(string input) {
     return "ERROR: Unknown command '" + cmd.name + "'. Type HELP for list.\n";
 }
 
-// ─────────────────────────────────────────────────────────
-// start()
-// Sets up the TCP socket server and starts accepting clients
-// ─────────────────────────────────────────────────────────
+
 void Server::start() {
 
     // ── Step 1: Load existing data from disk ──────────────
