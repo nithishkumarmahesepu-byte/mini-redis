@@ -11,7 +11,7 @@ private:
     Store store;
     Parser parser;
 
-    string handleCommand(string input);  // processes one command, returns response
+    string handleCommand(string input);  
 
 public:
     Server(int port);
