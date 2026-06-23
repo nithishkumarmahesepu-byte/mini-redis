@@ -56,7 +56,7 @@ nc localhost 6379
 
 | Command                  | Description                        | Example                    |
 |--------------------------|------------------------------------|----------------------------|
-| `SET key value`          | Store a key-value pair             | `SET name Rahul`           |
+| `SET key value`          | Store a key-value pair             | `SET name Nithish`           |
 | `GET key`                | Retrieve a value                   | `GET name`                 |
 | `DEL key`                | Delete a key                       | `DEL name`                 |
 | `EXISTS key`             | Check if key exists (1/0)          | `EXISTS name`              |
@@ -73,10 +73,10 @@ nc localhost 6379
 ## Example Session
 
 ```
-> SET name Rahul
+> SET name Nithish
 OK
 > GET name
-Rahul
+Nithish
 > SET age 20
 OK
 > INCR age
@@ -108,14 +108,14 @@ OK
 ./mini-redis
 
 # Connect and store data
-SET name Rahul
+SET name Nithish
 SET city Hyderabad
 
 # Stop server with Ctrl+C
 
 # Check the log file
 cat appendonly.log
-# SET name Rahul
+# SET name Nithish
 # SET city Hyderabad
 
 # Restart server — data is restored automatically
