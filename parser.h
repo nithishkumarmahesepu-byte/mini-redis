@@ -5,8 +5,8 @@
 using namespace std;
 
 struct Command {
-    string name;           // SET, GET, DEL, etc. (always uppercase)
-    vector<string> args;   // remaining tokens
+    string name;           
+    vector<string> args;  
 };
 
 class Parser {
